@@ -26,11 +26,7 @@ ligaParacliente(...cliente.telefone)
 
 /*utilizando abordagem com objetos
 situação: realizar um envio de uma carta para o cliente*/
-const encomenda = {
-    destinatario: cliente.nome,
-    endereco: cliente.enderecos
-}
-
+//------------------
 /*suponha que nesse caso o nosso novo objeto nao possa ter um outro objeto aninhado
 em um caso comum teriamos que digitar todos os dados na mão, essa seria a nossa forma bruta se por assim dizer
 dentro do objeto teriamos { endereco: cliente.enderecos[0].rua, numero: cliente.enderecos[0].numero }
