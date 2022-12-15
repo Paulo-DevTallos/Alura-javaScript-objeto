@@ -15,23 +15,21 @@ cliente.enderecos = [
 ];
 
 //iterando objeto de clientes
-for(let chave in cliente) {
+for (let chave in cliente) {
   //console.log(chave) é retornado todas as chaves que temos no nosso objeto
   //console.log(cliente[chave]) // é possível retornar o valor das chaves
-  
-  let tipo = typeof cliente[chave]
-  //essa checkagem faz um filtro 
-  if (tipo !== 'object' && tipo !== 'function') {
-    console.log(`A chave ${chave} tem o valor ${cliente[chave]}`)
+
+  let tipo = typeof cliente[chave];
+  //essa checkagem faz um filtro
+  if (tipo !== "object" && tipo !== "function") {
+    console.log(`A chave ${chave} tem o valor ${cliente[chave]}`);
   }
 }
 
-
-
-let arr = [1, 2, 3]
+let arr = [1, 2, 3];
 
 function testeArray(arrayNumber) {
-  return [...arrayNumber]
+  return [...arrayNumber];
 }
 
-console.log(testeArray([1,2,3,4]))
+console.log(testeArray([1, 2, 3, 4]));
