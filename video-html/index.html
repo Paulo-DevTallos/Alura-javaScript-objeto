@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+		<script src="https://unpkg.com/phosphor-icons"></script>
+		<style>
+			* {
+				margin: 0;
+				padding: 0;
+				box-sizing: border-box;
+			}
+
+			html {
+				scroll-behavior: smooth;
+			}
+
+			body {
+				background-color: rgb(18, 18, 20);
+				color: #f9f9f9;
+				scroll-behavior: smooth;
+				font-family: "Open Sans", sans-serif;
+			}
+
+			.api {
+				max-width: 85vw;
+				margin: 0 auto;
+				position: relative;
+			}
+
+			.home-bg {
+				position: absolute;
+				width: 100%;
+				height: 100%;
+				z-index: 1;
+				top: 0;
+				right: 0;
+				text-align: center;
+			}
+
+			.video-tape {
+				position: absolute;
+				top: 0;
+				right: 0;
+				width: 100%;
+				height: 100%;
+				margin: 0 auto;
+				object-fit: cover;
+				z-index: 1;
+			}
+
+			.overlay {
+				width: 100%;
+				height: 100%;
+				position: absolute;
+				z-index: 2;
+				background-image: linear-gradient(
+						to left,
+						rgba(18, 18, 20, 1),
+						rgba(11, 11, 11, 0) 15%
+					),
+					linear-gradient(
+						to right,
+						rgba(18, 18, 20, 1),
+						rgba(11, 11, 11, 0) 25%
+					),
+					linear-gradient(to top, rgba(18, 18, 20, 1), rgba(29, 29, 29, 0) 35%);
+			}
+
+			main {
+				width: 100%;
+				height: 100vh;
+				position: relative;
+			}
+
+			main nav {
+				width: 100%;
+				height: 10.4rem;
+				position: absolute;
+				top: 0;
+				left: 0;
+				z-index: 100;
+				display: flex;
+				justify-content: space-between;
+				align-items: center;
+				font-weight: 600;
+				font-size: 2rem;
+				line-height: 2.8rem;
+				color: #f9f9f9;
+				padding-top: 2.6rem;
+			}
+
+			main nav .logo,
+			main nav .logo img {
+				width: 21.2rem;
+				height: 100%;
+			}
+
+			main nav .logo {
+				transition: 0.3s ease-in-out;
+			}
+
+			main nav .logo:hover {
+				filter: drop-shadow(0px 0px 1px #fff);
+			}
+
+			main nav ul li .search-box {
+				height: 4.4rem;
+				background-color: rgba(255, 255, 255, 0.2);
+				border-radius: 40rem;
+				padding: 1.2rem;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+			}
+
+			nav ul {
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				gap: 6rem;
+				list-style: none;
+			}
+
+			nav ul li {
+				position: relative;
+				text-decoration: none;
+			}
+
+			nav ul li i {
+				padding-top: 0.8rem;
+			}
+
+			nav ul li a {
+				text-decoration: none;
+				color: var(--text-color);
+			}
+
+			nav ul li > a::after {
+				position: absolute;
+				content: "";
+				bottom: -2px;
+				left: 0;
+				width: 0;
+				height: 2px;
+				background: #ffa634;
+				transition: width 0.2s;
+			}
+
+			nav ul li > a:hover::after {
+				width: 100%;
+				height: 2px;
+				background: #ffa634;
+			}
+
+			main nav ul li .search-text {
+				border: none;
+				background: none;
+				outline: none;
+				float: left;
+				padding: 0;
+				color: white;
+				font-size: 1.6rem;
+				transition: 0.4s;
+				line-height: 4rem;
+				width: 0px;
+			}
+
+			main nav ul li .search-box:hover > .search-text {
+				width: 26rem;
+				padding: 0 6px;
+			}
+
+			main #home {
+				padding-top: 14.7rem;
+				position: absolute;
+				z-index: 1;
+				width: 100%;
+				display: flex;
+				flex-direction: column;
+			}
+
+			main p.tag {
+				width: fit-content;
+				background-color: #181818;
+				border-radius: 0px 7px;
+				padding: 0.3rem 0.7rem;
+				color: #f9f9f9;
+				font-weight: 600;
+				font-size: 1.2rem;
+				line-height: 1.4rem;
+			}
+
+			main #home .game-showcase {
+				display: flex;
+				justify-content: space-between;
+			}
+
+			main #home .game-showcase .extra {
+				display: flex;
+				gap: 1.8rem;
+				align-items: center;
+				padding-bottom: 2.2rem;
+				font-weight: 600;
+				font-size: 1.2rem;
+				line-height: 125.19%;
+			}
+
+			main #home .game-showcase .extra .stars {
+				width: 10.2rem;
+				display: flex;
+				gap: 0.5rem;
+			}
+
+			main #home .game-showcase .extra i {
+				font-size: 1.6rem;
+				color: var(--secondary-color);
+				text-shadow: 0px 2px 12px #ff6b00;
+			}
+
+			main #home .game-showcase h2 {
+				font-weight: 600;
+				font-size: 4.8rem;
+				line-height: 5.6rem;
+				padding-bottom: 2.2rem;
+			}
+
+			main #home .game-showcase .description {
+				max-width: 54rem;
+				font-weight: 400;
+				font-size: 1.8rem;
+				line-height: 2.4rem;
+				padding-bottom: 5.2rem;
+				text-align: left;
+			}
+
+			#home .game-showcase button {
+				width: 248px;
+				height: 48px;
+				background-color: #f9f9f9;
+				border: none;
+				border-radius: 4px;
+				color: #181818;
+				font-weight: 600;
+				font-size: 2rem;
+				line-height: 2.8rem;
+				cursor: pointer;
+			}
+
+			#home .game-showcase button:hover {
+				background-color: #f8bf74;
+				animation: pulsate 1s ease-in-out;
+			}
+
+			@keyframes pulsate {
+				0% {
+					box-shadow: 0 0 15px #f9f9f9;
+					box-shadow: 0 0 30px #f9f9f9;
+				}
+			}
+
+			main #home .game-showcase .imageArt {
+				position: absolute;
+				width: 728px;
+				height: 728px;
+				top: 14.7rem;
+				left: 50%;
+				z-index: -1;
+			}
+
+			#home .highlights {
+				height: 200px;
+				padding-top: 10.6rem;
+				padding-bottom: 60rem;
+				overflow: hidden;
+			}
+
+			#home .highlights h1 {
+				font-size: 2.8rem;
+				font-weight: 600;
+				line-height: 3.8rem;
+				position: relative;
+			}
+
+			#home .highlights h1:after {
+				content: "";
+				background: #f9f9f9;
+				position: absolute;
+				bottom: -5px;
+				left: 0;
+				height: 1.5px;
+				width: 5.2rem;
+			}
+
+			#home .highlights ul {
+				padding-top: 4.2rem;
+				padding-bottom: 2.2rem;
+				display: flex;
+				list-style: none;
+				justify-content: space-between;
+				overflow-x: none;
+				scroll-behavior: smooth;
+				user-select: none;
+			}
+
+			#home .highlights ul li {
+				position: right;
+				min-width: 260px;
+				min-height: 382px;
+				background-image: url();
+				background-size: cover;
+				display: flex;
+				flex-direction: column;
+				justify-content: flex-end;
+				gap: 1.4rem;
+				padding: 2.1rem 2rem;
+				animation: ease 1.3s;
+				position: relative;
+				cursor: pointer;
+				/*overflow: hidden;*/
+			}
+
+			#home .highlights ul li.active {
+				background-color: red;
+				box-shadow: 0 0 15px #f9f9f9;
+				box-shadow: 0 0 30px #f9f9f9;
+			}
+
+			#home .highlights p,
+			#home .highlights h3 {
+				z-index: 0;
+			}
+
+			#home .highlights ul li .price {
+				font-size: 1.6rem;
+				font-weight: 500;
+				line-height: 1.6rem;
+			}
+
+			#home .highlights ul li h3 {
+				font-size: 2rem;
+				font-weight: 500;
+				line-height: 2.8rem;
+			}
+
+			#home .highlights ul li::before {
+				content: "";
+				position: absolute;
+				bottom: 0;
+				left: 0;
+				width: 100%;
+				height: 100%;
+				background-image: linear-gradient(
+					to top,
+					rgba(18, 18, 18, 0.8),
+					rgba(18, 18, 18, 0) 80%
+				);
+				background-size: 200% 200%;
+				background-position-y: 100%;
+				transition: background-position 0.9s;
+			}
+
+			#home .highlights ul li.Active::before {
+				background-position-y: 0;
+			}
+
+			#home .highlights ul::-webkit-scrollbar {
+				height: 0.8rem;
+				-webkit-appearance: none;
+				cursor: pointer;
+			}
+
+			#home .highlights ul::-webkit-scrollbar-thumb {
+				background: #f9f9f9;
+			}
+
+			#home .highlights ul::-webkit-scrollbar-thumb:hover {
+				background: #f8bf74;
+				cursor: pointer;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="api">
+			<div class="home-bg">
+				<div class="overlay bg"></div>
+				<video
+					class="video-tape"
+					autoplay
+					loop
+					muted
+					src="assets/videos/God_of_War_Story_Trailer.mp4"
+				></video>
+			</div>
+			<main>
+				<nav>
+					<a class="logo" href="#HOME">
+						<img src="assets/img/logo-tallos.png" alt="Logo TallosFLix" />
+					</a>
+					<div class="mobile-menu">
+						<a href="#home"></a>
+						<div class="line1"></div>
+						<div class="line2"></div>
+						<div class="line3"></div>
+					</div>
+					<ul>
+						<li>
+							<div class="search-box">
+								<input
+									class="search-text"
+									type="text"
+									name=""
+									placeholder="Escreva o que procura"
+								/>
+								<a href="#search-movie"><i class="ph-magnifying-glass"></i></a>
+							</div>
+						</li>
+						<li><a href="#HOME">SOMENTE NOS CINEMAS</a></li>
+						<li><a href="#COMUNITY">FILMES</a></li>
+						<li><a href="#ABOUT">SERIES</a></li>
+						<li>
+							<a href="#DOWNLOAD-STEAM"><i class="ph-download-simple"></i></a>
+						</li>
+						<li>
+							<a href="#LOGIN"><i class="ph-user"></i></a>
+						</li>
+					</ul>
+				</nav>
+				<section id="home">
+					<div class="game-showcase">
+						<div>
+							<div class="tags">
+								<p class="tag">Ação</p>
+								<p class="tag">Rpg</p>
+							</div>
+							<div class="extra">
+								<span class="stars">
+									<i class="ph-star-fill"></i>
+									<i class="ph-star-fill"></i>
+									<i class="ph-star-fill"></i>
+									<i class="ph-star-fill"></i>
+									<i class="ph-star-fill"></i>
+								</span>
+								<p>Santa Monica Studio</p>
+							</div>
+							<h2>God of War Ragnarök</h2>
+							<p class="description">
+								Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed
+								dictum convallis turpis, nec rutrum quam vulputate viverra.
+								Proin ornare dolor sit amet laoreet dignissim.
+							</p>
+							<button>Mais detalhes</button>
+						</div>
+						<div class="imageArt">
+							<img src="assets/img/God_of_warArt.png" alt="God of war" />
+						</div>
+					</div>
+					<div class="highlights">
+						<h1>Destaques</h1>
+						<ul></ul>
+					</div>
+				</section>
+			</main>
+		</div>
+	</body>
+</html>
