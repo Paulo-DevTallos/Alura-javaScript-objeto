@@ -55,8 +55,8 @@ const anotherFind = findClient(filterClientes, "telefone", "1918820860");
 
 //console.log(find, anotherFind);
 
-function findComplementFilter(clientList) {
-	return clientList.filter((client) => {
+function findComplementFilter(clientes) {
+	return clientes.filter((client) => {
 		return (
 			client.endereco.apartamento &&
 			!client.endereco.hasOwnProperty("complemento")
@@ -64,6 +64,6 @@ function findComplementFilter(clientList) {
 	});
 }
 
-const findComplementFiltered = findComplementFilter("Emillee");
+const findComplementFiltered = findComplementFilter(clientes);
 
 console.log(findComplementFiltered);
